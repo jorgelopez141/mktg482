@@ -36,7 +36,7 @@ varimp.logistic.glm <- function(modelFit) {
 	  				  names(used.dataframe[sapply(used.dataframe, is.01)]) )
   allvars_factor2 <- paste(allvars_factor, collapse= "|" )
 
-  factor_merge <- enframe(tmp_newvars[grepl(allvars_factor2,tmp_newvars)], name = "fac", value = "variable") %>%
+  factor_merge <- tibble::enframe(tmp_newvars[grepl(allvars_factor2,tmp_newvars)], name = "fac", value = "variable") %>%
     mutate(fac=1)
 	
   logit_temp <- glm(modelFit$formula, data=used.dataframe, family=binomial, x=TRUE)
